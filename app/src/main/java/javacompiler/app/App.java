@@ -6,6 +6,7 @@ package javacompiler.app;
 import static javacompiler.typechecker.Typecheck.typecheck;
 import static javacompiler.translator.J2S.translateToIR;
 import static javacompiler.registerallocator.S2SV.allocateRegisters;
+import static javacompiler.riscvtranslator.SV2V.IRtoRiscV;
 /* TODO
 To move this file directly under src/main/java, need to test modifying the build.gradle in a new
 multi project build AND also changing the package name of this file. A hurdle for another day.

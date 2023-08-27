@@ -10,6 +10,7 @@ dependencies {
     implementation project(':typechecker')
     implementation project(':translator')
     implementation project(':registerallocator')
+    implementation project(':riscvtranslator')
 }
 
 application {
