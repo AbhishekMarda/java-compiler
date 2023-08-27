@@ -13,18 +13,8 @@ import cs132.minijava.MiniJavaParser;
 import cs132.minijava.syntaxtree.Node;
 
 public class J2S{
-    public static String translateToIR(String filename) {
-
-
+    public static String translateToIR(Node root) {
         try{
-
-             File f = new File(filename);
-
-            String currentDirectory = System.getProperty("user.dir");
-            System.out.println("Current working directory: " + currentDirectory);
-             InputStream targetStream = new FileInputStream(f);
-//            InputStream targetStream = System.in;
-            Node root =  new MiniJavaParser(targetStream).Goal();
             ProgramVisitor programVisitor = new ProgramVisitor();
             Program sparrowRoot = root.accept(programVisitor);
 

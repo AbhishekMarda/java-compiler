@@ -11,7 +11,7 @@ import cs132.minijava.syntaxtree.*;
 import cs132.minijava.MiniJavaParser;
 
 public class Typecheck {
-    public static boolean typecheck(String filename) {
+    public static Node typecheck(String filename) {
         try{
 
              File f = new File(filename);
@@ -30,15 +30,15 @@ public class Typecheck {
                 e.addClassInfo("boolean", null);
                 e.runChecks();
                 root.accept(t, e);
-                return true;
+                return root;
             } catch (RuntimeException r) {
-                // System.out.println(r.getMessage());
-                return false;
+                System.out.println("Typecheck unsuccessful");
+                throw r;
             }
 
 
         } catch (Exception e) {
-            return false;
+            return null;
         }
     }
 }

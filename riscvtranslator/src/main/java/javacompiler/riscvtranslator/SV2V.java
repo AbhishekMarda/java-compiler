@@ -1,10 +1,6 @@
 package javacompiler.riscvtranslator;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileWriter;
-import java.io.InputStream;
+import java.io.*;
 
 import javacompiler.riscvtranslator.Helpers.TraversalStruct;
 import javacompiler.riscvtranslator.Visitors.ProgramVisitor;
@@ -14,14 +10,25 @@ import cs132.IR.syntaxtree.Node;
 import cs132.IR.visitor.SparrowVConstructor;
 
 public class SV2V {
-    public static String IRtoRiscV(String file) {
+    public static String IRtoRiscV(String input) {
 		
 		try {
-			 File f = new File(file);
-	
-			 InputStream targetStream = new FileInputStream(f);
+//			 File f = new File(file);
+//
+//			 InputStream targetStream = new FileInputStream(f);
+
+			InputStream targetStream = new ByteArrayInputStream(input.getBytes());
 //			InputStream targetStream = System.in;
-			Node root = new SparrowParser(targetStream).Program();
+
+			/*
+			one possible fix for the multiple construction of the parser:
+			create a file containing the output belonging to the same input stream
+			and then reset the input stream so that you only have to call program
+			and then:
+			Node root = SparrowParser.Program();
+			 */
+			SparrowParser.ReInit(targetStream);
+			Node root = SparrowParser.Program();
 			SparrowVConstructor sc = new SparrowVConstructor();
 			root.accept(sc);
 

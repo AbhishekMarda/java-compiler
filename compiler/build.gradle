@@ -7,14 +7,16 @@ plugins {
 }
 
 dependencies {
+    implementation files('../lib/cs132.jar')
     implementation project(':typechecker')
     implementation project(':translator')
     implementation project(':registerallocator')
     implementation project(':riscvtranslator')
     implementation group: 'commons-cli', name: 'commons-cli', version: '1.4'
+    implementation 'commons-io:commons-io:2.13.0'
 }
 
 application {
     // Define the main class for the application.
-    mainClass = 'javacompiler.app.App'
+    mainClass = 'javacompiler.compiler.Compiler'
 }

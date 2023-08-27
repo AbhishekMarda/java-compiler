@@ -1,10 +1,6 @@
 package javacompiler.registerallocator;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileWriter;
-import java.io.InputStream;
+import java.io.*;
 import java.util.HashMap;
 
 import javacompiler.registerallocator.Helpers.LivenessAnalyzer;
@@ -16,13 +12,15 @@ import cs132.IR.visitor.SparrowConstructor;
 import cs132.IR.syntaxtree.Node;
 
 public class S2SV {
-	public static String allocateRegisters(String filename) {
+	public static String allocateRegisters(String input) {
 		
 		try {
-			 File f = new File(filename);
+//			 File f = new File(filename);
 	
-			 InputStream targetStream = new FileInputStream(f);
+//			 InputStream targetStream = new FileInputStream(f);
 //			InputStream targetStream = System.in;
+
+			InputStream targetStream = new ByteArrayInputStream(input.getBytes());
 			Node root = new SparrowParser(targetStream).Program();
 			SparrowConstructor sc = new SparrowConstructor();
 			root.accept(sc);

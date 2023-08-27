@@ -44,7 +44,7 @@ public class TraversalStruct {
             this.analyses.get(funcName),
             sparrowParams
         );
-        System.err.println(registerAllocator.toString());
+//        System.err.println(registerAllocator.toString());
     }
 
     public ArrayList<Instruction> saveRegisters(ArrayList<SVVar> registers, HashSet<SparrowVar> outSet) {
