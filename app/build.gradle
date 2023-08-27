@@ -9,6 +9,7 @@ plugins {
 dependencies {
     implementation project(':typechecker')
     implementation project(':translator')
+    implementation project(':registerallocator')
 }
 
 application {
