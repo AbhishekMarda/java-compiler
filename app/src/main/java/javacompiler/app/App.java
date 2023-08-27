@@ -7,12 +7,45 @@ import static javacompiler.typechecker.Typecheck.typecheck;
 import static javacompiler.translator.J2S.translateToIR;
 import static javacompiler.registerallocator.S2SV.allocateRegisters;
 import static javacompiler.riscvtranslator.SV2V.IRtoRiscV;
+import org.apache.commons.cli.*;
 /* TODO
 To move this file directly under src/main/java, need to test modifying the build.gradle in a new
 multi project build AND also changing the package name of this file. A hurdle for another day.
  */
 public class App {
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        Options options = new Options();
+        Option inputOption = Option.builder("f")
+                .required()
+                .hasArg()
+                .desc("Input file")
+                .build();
+        options.addOption(inputOption);
+
+        // Create a CommandLineParser
+        CommandLineParser parser = new DefaultParser();
+
+        try {
+            // Parse the command line arguments
+            CommandLine cmd = parser.parse(options, args);
+
+            // Access the values of the options
+            String inputFile = cmd.getOptionValue("f");
+
+            // Perform actions based on the parsed options
+            System.out.println("Input file: " + inputFile);
+
+            // Add your application logic here
+        } catch (ParseException e) {
+            // Handle parsing exceptions
+            System.err.println("Error: " + e.getMessage());
+            printHelp(options);
+        } catch (Exception e) {
+            System.out.println("Other error discovered: " + e.getMessage());
+        }
+    }
+    private static void printHelp(Options options) {
+        HelpFormatter formatter = new HelpFormatter();
+        formatter.printHelp("App", options);
     }
 }

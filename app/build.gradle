@@ -11,6 +11,7 @@ dependencies {
     implementation project(':translator')
     implementation project(':registerallocator')
     implementation project(':riscvtranslator')
+    implementation group: 'commons-cli', name: 'commons-cli', version: '1.4'
 }
 
 application {
