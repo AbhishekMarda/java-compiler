@@ -8,9 +8,10 @@ plugins {
 
 dependencies {
     implementation project(':typechecker')
+    implementation project(':translator')
 }
 
 application {
     // Define the main class for the application.
-    mainClass = 'App'
+    mainClass = 'javacompiler.app.App'
 }

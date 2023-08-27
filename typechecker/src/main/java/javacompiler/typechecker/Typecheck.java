@@ -10,7 +10,6 @@ import javacompiler.typechecker.myvisitors.TypecheckVisitor;
 import cs132.minijava.syntaxtree.*;
 import cs132.minijava.MiniJavaParser;
 
-
 public class Typecheck {
     public static boolean typecheck(String filename) {
         try{

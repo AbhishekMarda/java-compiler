@@ -13,4 +13,4 @@ plugins {
 }
 
 rootProject.name = 'javacompiler'
-include('app','typechecker')
+include('app','typechecker','translator')
