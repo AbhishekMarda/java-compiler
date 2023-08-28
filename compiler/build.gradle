@@ -4,6 +4,7 @@
 
 plugins {
     id 'javacompiler.java-application-conventions'
+    id 'com.github.johnrengelman.shadow' version '8.1.1'
 }
 
 dependencies {
@@ -19,4 +20,19 @@ dependencies {
 application {
     // Define the main class for the application.
     mainClass = 'javacompiler.compiler.Compiler'
+}
+
+jar {
+    // Include dependencies in the JAR
+    manifest {
+        attributes 'Main-Class': application.mainClass
+    }
+//    from { configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) } }
+//    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+}
+
+shadowJar {
+    archiveBaseName.set('java-compiler')
+    archiveClassifier.set('')
+    archiveVersion.set('1.0')
 }
